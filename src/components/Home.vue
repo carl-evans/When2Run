@@ -233,7 +233,7 @@ export default {
     },
     request() {
       const key = "168bcd0d4d91455a13d1938e1150240f";
-      const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${this.req.lat}&lon=${this.req.lng}&APPID=${key}`;
+      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.req.lat}&lon=${this.req.lng}&APPID=${key}`;
       const vm = this;
 
       fetch(url)
