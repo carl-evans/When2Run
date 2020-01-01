@@ -1,0 +1,1099 @@
+/* 
+RESET AND BASE STYLES
+slightly modified version of minimal
+CSS reset by Alligator.io: 
+https://alligator.io/css/minimal-css-reset/
+*/
+
+html {
+    /* make box model simple */
+    box-sizing: border-box;
+    /* make rem math easier  */
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 10rem;
+}
+
+* {
+    outline-offset: .65rem;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+/* responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* general body styles */
+body {
+    background-color: #fe8c00;
+    color: #333;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+input,
+label {
+    display: block;
+}
+
+fieldset {
+    border: none;
+}
+
+/* typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #1b1b1b;
+    font-family: 'Bebas Neue', Helvetica, Arial, sans-serif;
+    font-size: 5rem;
+    line-height: 5rem;
+    text-align: center;
+}
+
+p,
+a,
+ol,
+ul,
+form,
+button,
+input {
+    font-size: 1.6rem;
+}
+
+a,
+p a,
+li a {
+    color: #0000EE;
+    text-decoration: underline;
+    font-size: inherit;
+}
+
+a:hover {
+    color: #f9cc70;
+}
+
+a:focus,
+button:focus {
+    outline: .2rem dotted #333;
+}
+
+a:active,
+button:active {
+    position: relative;
+    top: .1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* MAIN HEADER AND FOOTER STYLES */
+.main-header {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 999;
+}
+
+.main-header a,
+.main-footer a,
+.button {
+    text-decoration: none;
+}
+
+.main-header,
+.main-footer {
+    background-color: #1b1b1b;
+    padding: 3rem;
+}
+
+.main-footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.main-nav--small {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav--small button {
+    background-color: inherit;
+    border: 0;
+    color: #fefefe;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.main-nav--small button span {
+    margin-right: .5rem;
+}
+
+.main-nav--small button:focus {
+    outline: .2rem dotted #333;
+}
+
+.main-nav-list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    text-align: center;
+    transition: opacity .23s ease;
+    /* hide but keep accessible for SR */
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    border: 0;
+    opacity: 0;
+}
+
+/* active mobile nav */
+.main-nav-list.active {
+    background-color: #1b1b1b;
+    height: calc(100vh - 8rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6rem;
+    position: fixed;
+    top: 8rem;
+    width: 100vw;
+    left: 0;
+    z-index: 999;
+}
+
+.main-nav-list.active li:nth-child(3) {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    border: 0;
+    opacity: 0;
+}
+
+@media(min-width: 600px) {
+    .main-nav-list.active li:nth-child(3) {
+        width: unset;
+        height: unset;
+        padding: unset;
+        overflow: unset;
+        clip: unset;
+        white-space: unset;
+        -webkit-clip-path: unset;
+        clip-path: unset;
+        border: unset;
+        opacity: unset;
+    }
+}
+
+.main-nav-list.active a {
+    font-size: 3rem;
+    line-height: 2;
+}
+
+.main-footer-nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+
+.main-nav-list a,
+.main-footer-nav-list a {
+    color: #fefefe;
+    font-family: 'Bebas Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+}
+
+.main-footer-nav-list a {
+    font-size: 1rem;
+}
+
+@media(min-width: 360px) {
+    .main-footer-nav-list a {
+        font-size: 1.3rem;
+    }
+}
+
+.main-footer-nav-list li:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.wrapper {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.wrapper img {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+/* sticky footer with flexbox */
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+#content {
+    position: absolute;
+    margin-bottom: 8rem;
+    top: 12rem;
+}
+
+/* hero component */
+.hero {
+    background-color: #fe8c00;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+/* location search component */
+.location {
+    margin-top: 10rem;
+}
+
+.location-flex {
+    border-radius: 4.2rem;
+    border: .1rem solid #dfe1e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.location label {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.location input {
+    border: 0;
+    border-bottom: .1rem solid transparent;
+    border-left: .1rem solid transparent;
+    border-top: .1rem solid transparent;
+    border-top-left-radius: 4.2rem;
+    border-bottom-left-radius: 4.2rem;
+    flex-grow: 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem .5rem 1rem 2rem;
+    -webkit-appearance: textfield;
+    z-index: 1;
+}
+
+.location input:focus,
+.location button:focus {
+    outline: none;
+    outline: .2rem dotted #333;
+}
+
+.location input::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+.location button {
+    background-color: #fff;
+    border: 0;
+    border-bottom: .1rem solid transparent;
+    border-top: .1rem solid transparent;
+    border-right: 0;
+    outline: none;
+    border-top-right-radius: 4.2rem;
+    border-bottom-right-radius: 4.2rem;
+    padding: .5rem 1.2rem .6rem .5rem;
+    z-index: 1;
+}
+
+.locations-list {
+    background-color: #fff;
+    list-style-type: none;
+    padding: 2rem 3rem;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    max-width: 94%;
+}
+
+.locations-list li {
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+}
+
+@media(min-width: 600px) {
+
+    /* hide the small menu toggle */
+    .main-nav--small {
+        display: none;
+    }
+
+    /* show nav as row */
+    .main-nav-list {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        /* unset SR only CSS */
+        width: unset;
+        height: unset;
+        padding: 0;
+        overflow: unset;
+        clip: unset;
+        white-space: unset;
+        clip-path: unset;
+        opacity: 1;
+    }
+
+    /* bigger footer links */
+    .main-footer-nav-list a {
+        font-size: 2rem;
+    }
+
+    .main-footer-nav-list li:not(:last-child) {
+        margin-right: 3rem;
+    }
+}
+
+/* text image patch */
+.text-image-patch {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 5rem;
+    text-align: left;
+}
+
+.text-image-patch h1,
+.text-image-patch h2,
+.text-image-patch h3,
+.text-image-patch h4,
+.text-image-patch h5,
+.text-image-patch h6 {
+    line-height: 5rem;
+    text-align: left;
+}
+
+
+.text-image-patch p {
+    font-size: 1.8rem;
+    line-height: 3.2rem;
+    max-width: 35ch;
+}
+
+.text-image-patch img {
+    order: 1;
+}
+
+.text-image-patch *+* {
+    margin-bottom: 1rem;
+}
+
+.text-image-patch .button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* centered text patch */
+.centred-text-patch {
+    margin-bottom: 5rem;
+}
+
+.centred-text-patch p {
+    line-height: 3.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50ch;
+}
+
+.centred-text-patch p a {
+    font-size: inherit;
+}
+
+/* button */
+.button {
+    border: 0;
+    background-color: #fff;
+    color: #1b1b1b;
+    display: inline-block;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.2rem;
+    letter-spacing: .1rem;
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    transition: all .2s ease-in;
+}
+
+/* generic typography styles */
+.generic {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 5rem;
+    text-align: left;
+}
+
+.generic h1,
+.generic h2,
+.generic h3,
+.generic h4,
+.generic h5,
+.generic h6 {
+    line-height: 5rem;
+    max-width: 20ch;
+    text-align: left;
+}
+
+.generic p,
+.generic ul {
+    font-size: 1.8rem;
+    line-height: 3.2rem;
+    max-width: 35ch;
+}
+
+.generic p a:hover,
+.generic li a:hover {
+    color: #551a8b;
+    text-decoration: none;
+}
+
+.generic p+h2 {
+    margin-bottom: 2.5rem;
+    margin-top: 2rem;
+}
+
+.generic li {
+    margin-left: 3rem;
+}
+
+.generic *+* {
+    margin-top: 1rem;
+}
+
+@media(min-width: 640px) {
+
+    .generic p,
+    .generic h1,
+    .generic h2,
+    .generic h3,
+    .generic h4,
+    .generic h5,
+    .generic h6 {
+        max-width: 50ch;
+    }
+}
+
+/* accordion */
+.accordion {
+    list-style-type: none;
+    margin: 1rem auto 3rem auto;
+    text-align: left;
+}
+
+.accordion button {
+    background-color: #fefefe;
+    border: none;
+    border-bottom: .1rem solid #e5e5e5;
+    font-family: 'Bebas Neue', Helvetica, Arial, sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: .1rem;
+    line-height: 2.4rem;
+    padding: 1rem;
+    text-align: left;
+    min-width: 35rem;
+    width: 100%
+}
+
+.accordion svg {
+    float: right;
+    margin-top: -1rem;
+    transition: all .32s ease;
+    /* margin-top: -.8rem; */
+}
+
+@media(min-width: 363px) {
+    .accordion svg {
+        margin-top: .5rem;
+        /* margin-top: -.8rem; */
+    }
+}
+
+.accordion svg.is-active {
+    fill: #C92A42;
+    transform: rotate(45deg);
+}
+
+.accordion p {
+    background-color: #fefefe;
+    display: none;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    max-width: 35rem;
+    padding: 1rem;
+}
+
+.accordion p.is-active {
+    display: block;
+}
+
+.accordion p:first-of-type {
+    border-bottom: .1rem solid #dfe1e5;
+}
+
+@media(min-width: 768px) {
+
+    .accordion,
+    .accordion p {
+        min-width: 56rem;
+        width: 56rem;
+    }
+}
+
+/* main form styles */
+.main-form {
+    background: #fefefe;
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 30rem;
+    padding: 2rem 1rem 2rem 1rem;
+}
+
+.main-form *+* {
+    margin-top: 1rem;
+}
+
+.gender-picker li {
+    margin-top: 0;
+}
+
+.main-form legend {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.main-form li {
+    display: flex;
+    align-items: flex-start;
+    list-style-type: none;
+    position: relative;
+}
+
+.main-form label {
+    position: absolute;
+    left: 3rem;
+    bottom: .25rem;
+}
+
+.main-form input[type="checkbox"] {
+    background: url('./images/checkbox.svg') 0 0 no-repeat;
+    height: 2rem;
+    width: 2rem;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+.main-form input[type="checkbox"]:checked {
+    background-image: url('./images/checkbox-checked.svg');
+}
+
+.main-form input[type="checkbox"]:focus {
+    outline: .1rem dotted #555;
+    outline-offset: .1rem;
+}
+
+.main-form .button {
+    border: .2rem solid #1b1b1b;
+    margin-top: 2rem;
+}
+
+/* gender picker exceptions */
+.gender-picker input[type="radio"] {
+    background: url('./images/checkbox.svg') 0 0 no-repeat;
+    height: 2rem;
+    width: 2rem;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+.gender-picker input[type="radio"]:checked {
+    background-image: url('./images/checkbox-checked.svg');
+}
+
+.gender-picker input[type="radio"]:focus {
+    outline: .1rem dotted #555;
+    outline-offset: .1rem;
+}
+
+.results {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.results ul {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-size: 3rem;
+    line-height: 4.6rem;
+    list-style-type: none;
+}
+
+
+@media(min-width: 1025px) {
+    #content {
+        margin-bottom: unset;
+        position: absolute;
+        top: 16rem;
+    }
+
+    .text-image-patch {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        margin-bottom: 13rem;
+        width: 102.4rem;
+    }
+
+    .text-image-patch *+* {
+        margin-bottom: unset;
+    }
+
+    .text-image-patch p:last-of-type {
+        margin-bottom: 4rem;
+    }
+
+    .text-image-patch h1,
+    .text-image-patch h3 {
+        line-height: 6.5rem;
+        padding-left: 3rem;
+        text-align: right;
+    }
+
+    .text-image-patch p {
+        color: #fff;
+        font-size: 1.8rem;
+        line-height: 1.8;
+        padding-left: 3rem;
+    }
+
+    .text-image-patch p a {
+        font-size: 1.8rem;
+    }
+
+    .text-image-patch--right {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .text-image-patch--right h1,
+    .text-image-patch--right h2,
+    .text-image-patch--right p {
+        padding-left: unset;
+        padding-right: 3rem;
+        text-align: left;
+    }
+
+    .text-image-patch--right h1,
+    .text-image-patch--right h2 {
+        line-height: 6.5rem;
+    }
+
+    .text-image-patch .button {
+        display: unset;
+    }
+
+    .text-image-patch img {
+        width: 640px;
+        height: 338px;
+        object-fit: cover;
+    }
+
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #fff;
+        font-size: 7rem;
+        line-height: 7rem;
+        letter-spacing: .3rem;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    a,
+    p a,
+    li a {
+        color: #f7b733;
+        text-decoration: none;
+    }
+
+    .main-header {
+        padding: unset;
+    }
+
+    .main-header {
+        background-color: unset;
+    }
+
+    .main-nav {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 102.4rem;
+        padding-bottom: 3rem;
+        padding-top: 3rem;
+    }
+
+    .main-nav-list a,
+    .main-footer-nav-list a {
+        border-bottom: .2rem solid transparent;
+        letter-spacing: .3rem;
+    }
+
+    .main-footer-nav-list a {
+        font-size: 1.6rem;
+    }
+
+    .main-nav-list a {
+        font-size: 2.4rem;
+    }
+
+    .main-footer-nav-list a {
+        line-height: 0;
+    }
+
+    .main-footer-nav-list {
+        justify-content: flex-end;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 102.4rem;
+        padding-left: unset;
+        padding-right: unset;
+    }
+
+    .main-nav-list a:hover,
+    .main-footer-nav-list a:hover {
+        border-bottom: .2rem solid orange;
+    }
+
+    .main-footer-nav-list li:first-child {
+        margin-right: auto;
+    }
+
+    .wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 102.4rem;
+        padding-left: unset;
+        padding-right: unset;
+    }
+
+    .wrapper img {
+        box-shadow: unset;
+    }
+
+    .hero {
+        min-height: calc(100vh - 7.9rem);
+    }
+
+    .hero-home {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.33) 56%, rgba(0, 0, 0, 0.3) 100%), url('./images/hero.jpg');
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .main-header {
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        z-index: 999;
+    }
+
+    .button--small {
+        font-size: 1.6rem;
+    }
+
+    .button--blue {
+        background-color: #3498db;
+    }
+
+    .button--red {
+        background-color: #e74c3c;
+    }
+
+    .button--silver {
+        background-color: #bdc3c7;
+    }
+
+    .button:hover {
+        background-color: #1b1b1b;
+        color: #fff;
+    }
+
+    .lg-mx-1 {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    /* centred text patch component */
+    .centred-text-patch {
+        margin-bottom: 10rem;
+    }
+
+    .centred-text-patch p {
+        color: #fefefe;
+        font-size: 2rem;
+    }
+
+    .centred-text-patch .button:hover {
+        transform: translateY(-.5rem);
+    }
+
+    /* location component */
+    .location-flex {
+        margin-bottom: 8.3rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 45rem;
+    }
+
+    .location label {
+        color: #fff;
+        font-size: 4.2rem;
+        font-weight: bold;
+        line-height: 5.2rem;
+    }
+
+    .locations-list {
+        border: .1rem solid transparent;
+        border-bottom-left-radius: 4.2rem;
+        border-bottom-right-radius: 4.2rem;
+        position: relative;
+        top: -85px;
+    }
+
+    .locations-list li:hover {
+        color: #000;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    /* generic typography styles */
+    .generic {
+        background: rgba(0, 0, 0, .05);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        color: #fefefe;
+        margin-bottom: 5rem;
+        padding: 5rem 3rem;
+        min-width: 102.5rem;
+    }
+
+    .generic h1,
+    .generic h2,
+    .generic h3,
+    .generic h4,
+    .generic h5,
+    .generic h6 {
+        font-size: 7rem;
+        line-height: unset;
+        max-width: 25ch;
+    }
+
+    .generic p {
+        max-width: 50ch;
+    }
+
+    .generic ul {
+        max-width: 40ch;
+    }
+
+    .generic p a,
+    .generic li a {
+        color: #f7b733;
+    }
+
+    .generic p a:hover,
+    .generic li a:hover {
+        color: #f9cc70;
+        text-decoration: none;
+    }
+
+    .generic *+* {
+        margin-top: 2rem;
+    }
+
+    /* accordion component */
+    .accordion {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        margin-bottom: 5rem;
+    }
+
+    .accordion button {
+        font-size: 3.6rem;
+        line-height: 3.6rem;
+        padding: 3rem 2rem 2rem 2rem;
+        transition: all .3s ease;
+    }
+
+    .accordion button:hover {
+        background: #dfe1e5;
+    }
+
+    .accordion p {
+        font-size: 1.8rem;
+        line-height: 1.8;
+        padding: 1rem 4rem 1rem 2rem;
+    }
+
+    .accordion svg {
+        margin-top: .8rem;
+    }
+
+    .main-form {
+        margin-bottom: 5rem;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition-property: opacity;
+        transition-duration: .25s;
+    }
+
+    .fade-enter-active {
+        transition-delay: .25s;
+    }
+
+    .fade-enter,
+    .fade-leave-active {
+        opacity: 0
+    }
+}
+
+.sr-only,
+.skip-link {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    border: 0;
+    opacity: 0;
+}
+
+@media(max-width: 640px) {
+    .sr-only--small {
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        -webkit-clip-path: inset(50%);
+        clip-path: inset(50%);
+        border: 0;
+        opacity: 0;
+    }
+}
+
+.active,
+.skip-link:focus {
+    width: unset;
+    height: unset;
+    padding: 0;
+    overflow: unset;
+    clip: unset;
+    white-space: unset;
+    clip-path: unset;
+    opacity: 1;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    background-color: #fff;
+    color: #0645AD;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+    outline: .2rem dotted #333;
+    outline-offset: .5rem;
+    top: 0;
+    position: fixed;
+    z-index: 1000;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.commas span:not(:last-child)::after {
+    content: ", ";
+}
