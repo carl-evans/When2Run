@@ -130,6 +130,7 @@ const month = today.getMonth();
 const day = today.getDate();
 const weekdays = new Array(7);
 
+weekdays[0] = "Sunday";
 weekdays[1] = "Monday";
 weekdays[2] = "Tuesday";
 weekdays[3] = "Wednesday";
@@ -137,6 +138,9 @@ weekdays[4] = "Thursday";
 weekdays[5] = "Friday";
 weekdays[6] = "Saturday";
 weekdays[7] = "Sunday";
+weekdays[8] = "Monday";
+weekdays[9] = "Tuesday";
+weekdays[10] = "Wednesday";
 
 export default {
   data() {
@@ -165,7 +169,7 @@ export default {
           dateISO: new Date(year, month, day + 1)
             .toISOString()
             .substring(0, 10),
-          day: /* weekdays[today.getDay() + 1],*/ "Tomorrow"
+          day: /* weekdays[today.getDay() + 1], */ "Tomorrow"
         },
         {
           id: 3,
