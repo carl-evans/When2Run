@@ -93,29 +93,13 @@
         <ul>
           <li>{{ result.date }} at {{ result.time }}</li>
         </ul>
-        <!-- COMING SOON
-        <router-link
-          to="/"
-          class="button button--small button--silver"
-          title="Use When2Run"
-        >Add to Apple Calendar</router-link>
-        <router-link
-          to="/"
-          class="button button--small button--blue lg-mx-1"
-          title="Use When2Run"
-        >Add to Google Calendar</router-link>
-        <router-link
-          to="/"
-          class="button button--small button--red"
-          title="Use When2Run"
-        >Add to Todoist</router-link>
-        -->
 
-        <router-link
-          to="/how-it-works"
+        <a
+          :href="result.googleLink"
           class="button button--small button--blue lg-mx-1"
-          title="Learn how When2Run works"
-        >Interested? Find out how When2Run works</router-link>
+          target="_blank"
+          title="Add running event to your Google Calendar"
+        >Add to Google Calendar</a>
       </section>
     </article>
   </section>
@@ -213,7 +197,10 @@ export default {
       /* result object */
       result: {
         date: "",
-        time: ""
+        time: "",
+        googleTime: null,
+        googleLink: ""
+        // googleLink: `https://calendar.google.com/calendar/r/eventedit?text=Run+Belfast&dates=20200127T224000Z/20200320T221500Z&details=To+find+more+runs,+link+here:+https://when2run.netlify.com&location=Belfast&sf=true&output=xml`
       }
     };
   },
@@ -275,11 +262,18 @@ export default {
           const lowestDifference = Math.min(...diffs);
           const lowestDifferenceIndex = diffs.indexOf(lowestDifference);
           const result = filteredData[lowestDifferenceIndex];
+          // const googleString = new Date(result.dt * 1000).toISOString();
           const resultString = new Date(result.dt * 1000)
             .toGMTString()
             .slice(0, 25);
           vm.result.date = resultString.slice(0, 16);
           vm.result.time = resultString.slice(17, 25);
+          /* googleTime date format conversion courtesy of Trantor Liu 
+          - https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar?rq=1 */
+          vm.result.googleTime = new Date(result.dt * 1000)
+            .toISOString()
+            .replace(/-|:|\.\d\d\d/g, "");
+          vm.result.googleLink = `https://calendar.google.com/calendar/r/eventedit?text=Run+${vm.location}&dates=${vm.result.googleTime}/${vm.result.googleTime}&details=To+find+more+runs,+link+here:+https://when2run.netlify.com&location=${vm.location}&sf=true&output=xml`;
         })
 
         .catch(function(error) {
