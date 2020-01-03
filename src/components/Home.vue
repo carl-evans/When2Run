@@ -200,7 +200,7 @@ export default {
         time: "",
         googleTime: null,
         googleLink: ""
-        // googleLink: `https://calendar.google.com/calendar/r/eventedit?text=Run+Belfast&dates=20200127T224000Z/20200320T221500Z&details=To+find+more+runs,+link+here:+https://when2run.netlify.com&location=Belfast&sf=true&output=xml`
+        // googleLink: `https://calendar.google.com/calendar/r/eventedit?text=Run+Belfast&dates=20200127T224000Z/20200320T221500Z&details=To+find+more+runs,+visit:+https://when2run.netlify.com&location=Belfast&sf=true&output=xml`
       }
     };
   },
